@@ -21,6 +21,7 @@ class GameEngine {
         this.options = options || {
             debugging: false,
         };
+        this.scenemeneger = null
     };
 
     init(ctx) {
@@ -87,11 +88,12 @@ class GameEngine {
         this.ctx.canvas.addEventListener("keydown", event => this.keys[event.key] = true);
         this.ctx.canvas.addEventListener("keyup", event => this.keys[event.key] = false);
     };
+    
 
     addEntity(entity) {
         this.entities.push(entity);
     };
-    
+
     removeEntity(entity) {
         let index = this.entities.indexOf(entity);
         if (index > -1) {
@@ -100,38 +102,40 @@ class GameEngine {
     }
 
     draw() {
-        // Clear the whole canvas with transparent color (rgba(0, 0, 0, 0))
+        // Clear the canvas with a transparent color
         this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
 
-        // Draw latest things first
-        for (let i = this.entities.length - 1; i >= 0; i--) {
+        // Draw entities starting from the first in the array
+        for (let i = 0; i < this.entities.length; i++) {
             this.entities[i].draw(this.ctx, this);
         }
     };
 
     update() {
         let entitiesCount = this.entities.length;
-
         for (let i = 0; i < entitiesCount; i++) {
             let entity = this.entities[i];
-
-            if (!entity.removeFromWorld) {
+            if (entity && !entity.removeFromWorld) {
                 entity.update();
             }
         }
 
-        for (let i = this.entities.length - 1; i >= 0; --i) {
-            if (this.entities[i].removeFromWorld) {
-                this.entities.splice(i, 1);
-            }
-        }
-    };
+        // After updating, filter out entities marked for removal
+        this.entities = this.entities.filter(entity => entity && !entity.removeFromWorld);
+    }
+    resetInputFlags() {
+        this.click = false;
+    }
 
     loop() {
-        this.clockTick = this.timer.tick();
-        this.update();
-        this.draw();
-    };
+        if (!this.scenemeneger.endScene.gameOver) {
+            this.clockTick = this.timer.tick();
+            this.scenemeneger.update(); // Make sure SceneManager updates first
+            this.update();
+            this.draw();
+            this.resetInputFlags();
+        }
+    }
 
 };
 

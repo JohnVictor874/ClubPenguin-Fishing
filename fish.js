@@ -89,6 +89,7 @@ class Fish{
             this.player.caught = false;
             this.score.score += 1;
             this.removeFromWorld = true;
+            
 
         }
 

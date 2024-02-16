@@ -10,10 +10,19 @@ class Animator{
     drawFrame(tick, ctx, x, y) {
         this.elapsedTime += tick;
         if(this.elapsedTime > this.totalTime) this.elapsedTime -= this.totalTime;
-        const frame = this.currentFrame();
+        
+        
 
-        ctx.drawImage(this.spriteSheet, this.xStart + this.width*frame,this.yStart, this.width, this.height, x, y, this.width, this.height) ;
-
+        
+        if(this.direction === "W") {
+            const frame = this.currentFrame() +1;
+            this.frame = frame;
+            ctx.drawImage(this.spriteSheet, this.xStart - this.height * frame, this.yStart, this.width, this.height, x, y, this.width, this.height);
+        }else{
+            const frame = this.currentFrame();
+            this.frame = frame;
+            ctx.drawImage(this.spriteSheet, this.xStart + this.width*frame,this.yStart, this.width, this.height, x, y, this.width, this.height) ;
+        }
 
     }
 
@@ -21,6 +30,7 @@ class Animator{
         this.elapsedTime += tick;
         if(this.elapsedTime > this.totalTime) this.elapsedTime -= this.totalTime;
         const frame = this.currentFrame();
+        this.frame = frame;
         if(this.direction === "W") {
             ctx.drawImage(this.spriteSheet, this.xStart, this.yStart + this.height * frame, this.width, this.height, x, y, this.width, this.height);
         }else{
