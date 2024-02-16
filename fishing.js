@@ -21,12 +21,12 @@ class Fishing{
         const mousePos = this.game.getMousePosition();
         const newMouseY = mousePos ? mousePos.y : 0;
 
-        // Check the direction of movement
+
         this.isGoingUp = newMouseY < this.y;
 
         this.y = newMouseY;
 
-        // Adjust the position to stay within the canvas bounds
+
         if (this.y < 50) {
             this.y = 50;
             
@@ -36,7 +36,7 @@ class Fishing{
         if (this.huck === false && newMouseY < 200 && this.game.click) {
             this.huck = true;
             this.caught = false;
-            // Ensure we don't go below 0 lives
+            
             if (this.lifes > 0) {
                 this.lifes--;
             }
@@ -44,7 +44,7 @@ class Fishing{
     }
 
     draw(ctx) {
-        // Use the appropriate sprite based on the direction
+       
         if(this.huck) {
             if (this.caught) {
                 ctx.drawImage(this.huckC, this.x + 22, this.y);

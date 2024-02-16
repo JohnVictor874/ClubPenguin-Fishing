@@ -102,10 +102,10 @@ class GameEngine {
     }
 
     draw() {
-        // Clear the canvas with a transparent color
+        
         this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
 
-        // Draw entities starting from the first in the array
+        
         for (let i = 0; i < this.entities.length; i++) {
             this.entities[i].draw(this.ctx, this);
         }
@@ -120,7 +120,7 @@ class GameEngine {
             }
         }
 
-        // After updating, filter out entities marked for removal
+      
         this.entities = this.entities.filter(entity => entity && !entity.removeFromWorld);
     }
     resetInputFlags() {
@@ -130,7 +130,7 @@ class GameEngine {
     loop() {
         if (!this.scenemeneger.endScene.gameOver) {
             this.clockTick = this.timer.tick();
-            this.scenemeneger.update(); // Make sure SceneManager updates first
+            this.scenemeneger.update();
             this.update();
             this.draw();
             this.resetInputFlags();

@@ -5,7 +5,7 @@ class Beral {
         
         this.y = y;
         this.player = fishing;
-        this.direction = direction; // "E" for right, "W" for left
+        this.direction = direction; 
         if(this.direction === "E") {
             this.x = -200;
         } else {
@@ -15,7 +15,7 @@ class Beral {
         this.width = 137;
         this.height = 173;
         this.spritesheet = ASSET_MANAGER.getAsset("./sprites/beral.png");
-        // Ensure Animator can handle different directions if necessary
+
         this.isIngame = true;
        
     }
@@ -31,14 +31,14 @@ class Beral {
             }
         }
 
-        // Update position based on direction
+
         if (this.direction === "E") {
             this.x += this.game.clockTick * this.speed;
         } else if (this.direction === "W") {
             this.x -= this.game.clockTick * this.speed;
         }
 
-        // Boundary condition check
+
         if ((this.direction === "E" && this.x > this.game.ctx.canvas.width) ||
             (this.direction === "W" && this.x < -this.width)) {
             this.isIngame = false;

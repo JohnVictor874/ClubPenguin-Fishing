@@ -32,16 +32,16 @@ class Fish{
         }
     }
 
-    // Assuming this is inside your fish object or class
+
     update() {
         if(this.direction === "W") {
             this.x += this.gameEngine.clockTick * this.speed;
 
-            // Adjust the amplitude and frequency for the desired curve shape
-            const amplitude = 100;  // Adjust this value to control the height of the curve
-            const frequency = 0.0040;  // Adjust this value to control the width of the curve
+          
+            const amplitude = 100;  
+            const frequency = 0.0040;  
 
-            // Use sine function to create a smooth up-and-down motion
+
             this.y = this.startY - amplitude * Math.sin(frequency * this.x);
 
             if (this.x > 1300) this.x = -200;
@@ -62,11 +62,11 @@ class Fish{
         }else {
             this.x -= this.gameEngine.clockTick * this.speed;
 
-            // Adjust the amplitude and frequency for the desired curve shape
-            const amplitude = 100;  // Adjust this value to control the height of the curve
-            const frequency = 0.0040;  // Adjust this value to control the width of the curve
+            
+            const amplitude = 100;  
+            const frequency = 0.0040;  
 
-            // Use sine function to create a smooth up-and-down motion
+            
             this.y = this.startY - amplitude * Math.sin(frequency * this.x);
 
             if (this.x < -400) this.x = 1300;

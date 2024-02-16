@@ -14,11 +14,11 @@ class Crab {
 		this.x = -200;
 		this.y = 200;
 		this.speed = 50;
-		this.chopFrameCount = 0; // To keep track of the frame count in chop animation
-		this.returning = false; // Indicates if the crab is returning
+		this.chopFrameCount = 0; 
+		this.returning = false; 
 
-		this.choppingFrames = 5; // Number of frames in the chop animation
-		this.hasChopped = false; // To ensure the chop logic runs only once
+		this.choppingFrames = 5; 
+		this.hasChopped = false; 
 		this.isIngame = true;
 	}
 
@@ -30,20 +30,20 @@ class Crab {
 				this.chop = true;
 			}
 		} else if (this.chop && !this.returning) {
-			// Increment chopFrameCount when the frame is 1.
+			
 			if (this.animator.frame === 1) {
 				this.chopFrameCount++;
 			}
 
-			// Check if chopFrameCount has been incremented and the current frame is 0.
+			
 			if (this.animator.frame === 0 && this.chopFrameCount > 0 && !this.hasChopped) {
 				if (this.player.y > 200) {
 					this.player.lossLife();
 				}
 				this.animator = new Animator(this.spritesheet, 0, 0, 215, 80, 9, 0.1);
 				this.returning = true;
-				this.hasChopped = true; // Ensures the logic runs only once
-				this.chopFrameCount = 0; // Reset chopFrameCount for future use
+				this.hasChopped = true; 
+				this.chopFrameCount = 0; 
 			}
 		} else if (this.returning) {
 			this.x -= this.game.clockTick * this.speed;
