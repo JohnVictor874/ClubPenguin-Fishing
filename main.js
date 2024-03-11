@@ -17,6 +17,13 @@ ASSET_MANAGER.queueDownload("./sprites/penguin.png");
 ASSET_MANAGER.queueDownload("./sprites/whole.png");
 ASSET_MANAGER.queueDownload("./sprites/beral.png");
 ASSET_MANAGER.queueDownload("./sprites/crab_left.png");
+ASSET_MANAGER.queueDownload("./sprites/boot.png");
+ASSET_MANAGER.queueDownload("./sprites/sharkTail.png");
+ASSET_MANAGER.queueDownload("./sprites/sharkMouthOpen.png");
+ASSET_MANAGER.queueDownload("./sprites/sharkMouthClose.png");
+ASSET_MANAGER.queueDownload("./sprites/lineShock.png");
+ASSET_MANAGER.queueDownload("./sprites/squid.png");
+ASSET_MANAGER.queueDownload("./sprites/shockHuck.png");
 ASSET_MANAGER.downloadAll(() => {
 	const canvas = document.getElementById("gameWorld");
 	const ctx = canvas.getContext("2d");
